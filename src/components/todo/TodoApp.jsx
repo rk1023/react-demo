@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import './../../bootstrap.css';
+//import './menuComponent.css';
 
 
 
@@ -7,22 +9,28 @@ class TodoApp extends Component {
     render() {
         return (
             <div>
-                <HeaderComponent></HeaderComponent>
+             
                 <div className="todoApp">
                     <Router>
+                    <HeaderComponent></HeaderComponent>
                         <Switch>
                             <Route path='/' exact component={LoginComponent}></Route>
                             <Route path='/login' component={LoginComponent}></Route>
                             <Route path='/welcome/:userName' component={WelcomeComponent}></Route>
                             <Route path='/todos' component={ListTodosComponent}></Route>
+                            <Route path='/logout' component={LogoutComponent}></Route>
                             <Route path='/*' component={ErrorComponent}></Route>
+                          
+                            
                         </Switch>
+
+                        <FooterComponent></FooterComponent>
                     </Router>
 
                     {/* <LoginComponent></LoginComponent> */}
                     {/* <WelcomeComponent></WelcomeComponent> */}
                 </div>
-                <FooterComponent></FooterComponent>
+                
             </div>
         );
     }
@@ -106,7 +114,7 @@ class ListTodosComponent extends Component {
         return (
             <div>
                 <h1>List of Todo</h1>
-
+<div className='container'>
                 <table>
 
                     <tr>
@@ -132,6 +140,7 @@ class ListTodosComponent extends Component {
 
                     }
                 </table>
+                </div>
             </div>
         )
     }
@@ -139,11 +148,19 @@ class ListTodosComponent extends Component {
 class HeaderComponent extends Component {
     render() {
         return (
-            <div>
+            <header>
+                <nav className="nav navbar-expand-md navbar-dark bg-dark">
+                <ul className="navbar-nav">
+                    <li><Link to='/welcome/admin'>Home</Link></li>
+                    <li><Link to='/todos'>Todo</Link></li>
+                </ul>
+                <ul className="navbar-nav navbar-collapse justify-content-end">
+                    <li className="nav-link"><Link to='/login'>Login</Link></li>
+                    <li className="nav-link"><Link to='/logout'>Logout</Link></li>
+                </ul>
+           </nav>
+        </header>
 
-            Todo Management System 
-
-            </div>
         )
     }
 }
@@ -173,6 +190,16 @@ class WelcomeComponent extends Component {
     }
 }
 
+class LogoutComponent extends Component {
+    render() {
+        return (
+            <div className='container'>
+                You have loggedout Successfuly!<br></br>
+               Thank You for visiting my App.
+            </div>
+        )
+    }
+}
 
 function ErrorComponent() {
     return <div>Some Error Occured!</div>
