@@ -68,7 +68,7 @@ class ListTodosComponent extends Component {
                                                 <span><button className='btn btn-warning' onClick={() => this.deleteTodo(todo.id)}>Delete</button></span>
 
                                                 <span> <button onClick={() => this.updateTodo(todo.id)}>Edit</button></span>
-                                                <span> <button onClick={() => this.addTodo()}>Add</button></span>
+                                               
                                             </td>
 
                                         </tr>
@@ -79,6 +79,7 @@ class ListTodosComponent extends Component {
                         </tbody>
 
                     </table>
+                    <div> <button onClick={() => this.addTodo()}>Add</button></div>
                 </div>
             </div>
         )
