@@ -41,9 +41,7 @@ class TodoComponent extends Component {
 
 
     render() {
-        console.log('Inside render ')
-       // let description=this.state.description;
-       // let   targetDate=this.state.targetDate
+ 
         let {description,targetDate}=this.state;
         return (
 
@@ -84,6 +82,7 @@ class TodoComponent extends Component {
         console.log('inside submitData')
         console.log(values)
         this.setState({description:values.description,targetDate:values.targetDate })
+        console.log(this.state)
         TodoService.updateTodoByUserNameAndId(AuthService.getLoggedInUser(),this.state.id,this.state)
         .then(()=>this.props.history.push(`/todos`))
 
@@ -111,10 +110,17 @@ class TodoComponent extends Component {
         console.log('TodoComponent=>handleSuccessResponse')
        // console.log(response)
         console.log(response.data)
-        console.log(response.data.description)
-        //console.log(response.status)
-       // this.setState({description: response.data.description})
-        this.setState({ id: response.data.id,description:response.data.description,targetDate:response.data.targetDate })
+        if(!response.data)
+        {
+            console.log('Na Data Found')
+            this.setState({ id:0,description:response.data.description })
+        }
+        else
+        {
+            this.setState({ id: response.data.id,description:response.data.description,targetDate:response.data.targetDate })
+        }
+
+       
     }
     handleErrorResponse(error) {
         console.log(error.response)

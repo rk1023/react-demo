@@ -15,6 +15,8 @@ class ListTodosComponent extends Component {
         this.handleErrorResponse = this.handleErrorResponse.bind(this)
         this.deleteTodo = this.deleteTodo.bind(this)
         this.updateTodo =this.updateTodo.bind(this)
+        this.addTodo =this.addTodo.bind(this)
+        
         console.log('Inside constructor ')
     }
 
@@ -66,6 +68,7 @@ class ListTodosComponent extends Component {
                                                 <span><button className='btn btn-warning' onClick={() => this.deleteTodo(todo.id)}>Delete</button></span>
 
                                                 <span> <button onClick={() => this.updateTodo(todo.id)}>Edit</button></span>
+                                                <span> <button onClick={() => this.addTodo()}>Add</button></span>
                                             </td>
 
                                         </tr>
@@ -98,6 +101,14 @@ class ListTodosComponent extends Component {
         //console.log(`ListTodosComponent=>updateTodo=>todId ${todoId}`)
         this.props.history.push(`/todos/${todoId}`);
     }
+
+    addTodo() {
+        console.log('addTodo')
+        let todoId=0
+        this.props.history.push(`/todos/${todoId}`);
+    }
+
+    
 
     
 
