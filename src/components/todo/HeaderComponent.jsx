@@ -3,12 +3,16 @@ import { Link } from 'react-router-dom';
 import AuthService from './AuthService.js'
 import { withRouter } from 'react-router';
 
+
 class HeaderComponent extends Component {
+
+
+
     render() {
         const isUserLoggedIn = AuthService.isUserLoggedIn();
 
         return (
-            <header>
+            <header style={{backgroundColor: "lightblue", height: 100 }}>
                 <nav className="nav navbar-expand-md navbar-dark bg-dark">
                     <ul className="navbar-nav">
                         {isUserLoggedIn && <li><Link to='/welcome/admin'>Home</Link></li>}
@@ -23,6 +27,8 @@ class HeaderComponent extends Component {
 
         )
     }
+
+ 
 }
 
 export default withRouter(HeaderComponent);
