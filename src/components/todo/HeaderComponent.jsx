@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from './AuthService.js'
 import { withRouter } from 'react-router';
+import AppBar from 'material-ui/AppBar';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { whitesmoke } from 'color-name';
+
 
 
 class HeaderComponent extends Component {
@@ -10,25 +14,32 @@ class HeaderComponent extends Component {
 
     render() {
         const isUserLoggedIn = AuthService.isUserLoggedIn();
-
+        const userName = AuthService.getLoggedInUser();
+        const welcomeLink='/welcome/'+userName
         return (
-            <header style={{backgroundColor: "lightblue", height: 100 }}>
-                <nav className="nav navbar-expand-md navbar-dark bg-dark">
-                    <ul className="navbar-nav">
-                        {isUserLoggedIn && <li><Link to='/welcome/admin'>Home</Link></li>}
-                        {isUserLoggedIn && <li><Link to='/todos'>Todo</Link></li>}
-                    </ul>
-                    <ul className="navbar-nav navbar-collapse justify-content-end">
-                        {!isUserLoggedIn && <li className="nav-link"><Link to='/login'>Login</Link></li>}
-                        {isUserLoggedIn && <li className="nav-link"><Link to='/logout' onClick={AuthService.logOutUser}>Logout</Link></li>}
-                    </ul>
-                </nav>
-            </header>
+ 
+          
+                <MuiThemeProvider>
+                    <div>
+                        <AppBar>
+                        {isUserLoggedIn && <li style={style}><Link to='/todos'>Todo</Link></li>}
+                           
+                          {isUserLoggedIn && <li style={style}><Link to='/logout' onClick={AuthService.logOutUser}>Logout</Link></li>}
+                          {isUserLoggedIn && <li style={style}><Link to={welcomeLink}>Home</Link></li>}
+                        </AppBar>
 
+
+
+                    </div>
+                </MuiThemeProvider>
+           
         )
     }
 
- 
-}
 
+}
+const style = {
+    margin: 15,
+    color: whitesmoke
+   };
 export default withRouter(HeaderComponent);

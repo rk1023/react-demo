@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-//import { super } from '@babel/types';
 import WelcomeService from './../../api/todo/WelcomeService'
 import AuthService from './AuthService.js'
+import todoImage from '../../images/Todo.jpg'; 
 
 class WelcomeComponent extends Component {
 
@@ -17,18 +16,10 @@ class WelcomeComponent extends Component {
      }
     render() {
         return (
-            <div>
-                Welcome {this.props.match.params.userName}!<br></br>
-                You can mange your todos <Link to='/todos'>here</Link>
+            <div style={style}>
+               <img src={todoImage} alt="Todo"  height={350} width={800}/>
+              
 
-                <div>
-                    Click below button to call API<br></br>
-                    <button onClick={this.getMessageByUserName}>CallAPI</button>
-                </div>
-
-                 <div>
-                    {this.state.welcomeMsg}
-                </div>
             </div>
 
 
@@ -67,4 +58,8 @@ class WelcomeComponent extends Component {
         this.setState({ welcomeMsg: error.response.data.message })
     }
 }
+
+const style = {
+    margin: 15,
+   };
 export default WelcomeComponent;

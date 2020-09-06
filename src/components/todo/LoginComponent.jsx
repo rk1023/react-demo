@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import AuthService from './AuthService.js';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 
 class LoginComponent extends Component {
@@ -39,24 +43,38 @@ class LoginComponent extends Component {
         }
         // console.log(this.state)
     }
+
+
+
     render() {
         return (
-            <div className="loginComp">
-
-                UserName :  <input type="text" name="userName" value={this.state.userName} onChange={this.handleChange}></input>
-                <br></br>
-                Password :  <input type="password" name="password" value={this.state.password} onChange={this.handleChange}></input>
-                <br></br>
-                <button onClick={this.login}>Login</button>
-
-                {this.state.isLoginFailed && <div>Invalid UserName/Password!</div>}
-                {this.state.isLoginSuccessful && <div>Login Successful!</div>}
-
-
-            </div>
+          <div>
+            <MuiThemeProvider>
+              <div>
+               <TextField
+                 hintText="Enter your Username"
+                 floatingLabelText="Username"
+                 onChange = {(event,newValue) => this.setState({username:newValue})}
+                 />
+               <br/>
+                 <TextField
+                   type="password"
+                   hintText="Enter your Password"
+                   floatingLabelText="Password"
+                   onChange = {(event,newValue) => this.setState({password:newValue})}
+                   />
+                 <br/>
+                 <RaisedButton label="Submit" primary={true} style={style} onClick={this.login}/>
+             </div>
+             </MuiThemeProvider>
+          </div>
         );
-    }
+      }
 
 }
+
+const style = {
+    margin: 15,
+   };
 
 export default LoginComponent;
