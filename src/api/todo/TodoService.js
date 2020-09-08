@@ -1,13 +1,15 @@
 import Axios from "axios";
 import AuthService from './../../components/todo/AuthService'
+import AppConstants from './../../AppConstants'
 class TodoService
 {
-
+   baseUrl=AppConstants.BASE_API_URL;
   fetchAllTodoByUserName(userName)
   {
    // console.log('TodoService=>fetchAllTodoByUserName');
-   const token ='Bearer '+AuthService.getJwtToken();
-     return  Axios.get(`http://localhost:8080/todo/${userName}`,{headers: {Authorization: token } })
+    const token ='Bearer '+AuthService.getJwtToken();
+  
+     return  Axios.get(`${this.baseUrl}/todo/${userName}`,{headers: {Authorization: token } })
      
   }
 
@@ -15,7 +17,7 @@ class TodoService
   {
    // console.log('TodoService=>deleteTodoByUserNameAndId');
    const token ='Bearer '+AuthService.getJwtToken();
-     return  Axios.delete(`http://localhost:8080/todo/${userName}/${todoId}`,{headers: {Authorization: token }})
+     return  Axios.delete(`${this.baseUrl}/todo/${userName}/${todoId}`,{headers: {Authorization: token }})
      
   }
 
@@ -23,7 +25,7 @@ class TodoService
   {
    // console.log('TodoService=>fetchAllTodoByUserNameAndId');
    const token ='Bearer '+AuthService.getJwtToken();
-     return  Axios.get(`http://localhost:8080/todo/${userName}/${todoId}`,{headers: {Authorization: token }})
+     return  Axios.get(`${this.baseUrl}/todo/${userName}/${todoId}`,{headers: {Authorization: token }})
      
   }
 
@@ -32,7 +34,7 @@ class TodoService
   {
     console.log('TodoService=>updateTodoByUserNameAndId');
     const token ='Bearer '+AuthService.getJwtToken();
-     return  Axios.put(`http://localhost:8080/todo/${userName}/${todoId}`,todoDto,{headers: {Authorization: token }})
+     return  Axios.put(`${this.baseUrl}/todo/${userName}/${todoId}`,todoDto,{headers: {Authorization: token }})
      
   }
 
