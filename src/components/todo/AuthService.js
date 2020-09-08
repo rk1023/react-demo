@@ -1,3 +1,5 @@
+import JwtTokenService from './../../api/todo/JwtTokenService'
+
 class AuthService
 {
 
@@ -7,10 +9,31 @@ class AuthService
       sessionStorage.setItem('user',userName);
     }
 
+    fetchJWTToken(username,password)
+    {
+      JwtTokenService.fetchJwtToken(username,password).then(
+        response=>{
+          console.log('AuthService|getJWTToken');
+          console.log(response.data);
+          sessionStorage.setItem('token',response.data.token);   
+        }
+        )
+        .catch(error=> {
+          console.log('AuthService|getJWTToken: Could not get JWT Token');
+        })
+    }
+
+    getJwtToken()
+    {
+      console.log('AuthService=>getJwtToken')
+      return sessionStorage.getItem('token'); 
+    }
+
     logOutUser()
     {
       //  console.log('AuthService=>logOutUser');
       sessionStorage.removeItem('user');
+      return sessionStorage.removeItem('token'); 
     }
 
     isUserLoggedIn()

@@ -22,10 +22,11 @@ class HeaderComponent extends Component {
                 <MuiThemeProvider>
                     <div>
                         <AppBar>
+                        {isUserLoggedIn && <li style={style}><Link to={welcomeLink}>Home</Link></li>}
                         {isUserLoggedIn && <li style={style}><Link to='/todos'>Todo</Link></li>}
                            
                           {isUserLoggedIn && <li style={style}><Link to='/logout' onClick={AuthService.logOutUser}>Logout</Link></li>}
-                          {isUserLoggedIn && <li style={style}><Link to={welcomeLink}>Home</Link></li>}
+ 
                         </AppBar>
 
 

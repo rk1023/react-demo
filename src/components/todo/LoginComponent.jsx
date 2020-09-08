@@ -31,17 +31,17 @@ class LoginComponent extends Component {
         if (this.state.userName !== ' ' && this.state.password === 'admin') {
             console.log('inside login success case')
             AuthService.registerSuccessfulLogin(this.state.userName, ' ');
+            AuthService.fetchJWTToken(this.state.userName,this.state.password);
 
             this.props.history.push(`/welcome/${this.state.userName}`);
-            // this.setState({ isLoginSuccessful : true})
-            // this.setState({ isLoginFailed: false })
+
 
         } else {
             console.log('inside login failed case')
             this.setState({ isLoginFailed: true, isLoginSuccessful: false })
 
         }
-        // console.log(this.state)
+
     }
 
 
@@ -64,7 +64,7 @@ class LoginComponent extends Component {
                    onChange = {(event,newValue) => this.setState({password:newValue})}
                    />
                  <br/>
-                 <RaisedButton label="Submit" primary={true} style={style} onClick={this.login}/>
+                 <RaisedButton label="Login" primary={true} style={style} onClick={this.login}/>
              </div>
              </MuiThemeProvider>
           </div>
