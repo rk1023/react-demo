@@ -1,3 +1,8 @@
+## Craeted By Rajesh
+##To run UI properly with Todo Feature , get API zip file from resource folder and run 
+
+## Any username can be passed but password will be admin
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
